@@ -34,7 +34,7 @@ formSubmit.addEventListener('click', (event) => {
     const pagesInput = document.querySelector('#pages');
     const readInput = document.querySelector('#read');
 
-    const newBook = new Book(authorInput.value, titleInput.value, pagesInput.value, readInput.checked);
+    const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
     books.push(newBook);
 
     tableBody.textContent = ''; //Clears table body
