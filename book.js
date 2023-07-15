@@ -1,4 +1,5 @@
 const bookAdder = document.querySelector('#book-adder');
+const table = document.querySelector('table');
 const tableBody = document.querySelector('tbody');
 
 const formContainer = document.querySelector('.form-container');
@@ -24,9 +25,18 @@ bookAdder.addEventListener('click', toggleFormContainer);
 
 formExit.addEventListener('click', toggleFormContainer)
 
+formSubmit.addEventListener('click', 
+    (function displayTable(){
+        if (!form.checkValidity()){
+            return;
+        }
+        table.style.display = 'table';
+        formSubmit.removeEventListener('click', displayTable); 
+    })
+);
+
 formSubmit.addEventListener('click', (event) => {
     if (!form.checkValidity()){
-        console.log('Invalid inputs!');
         return;
     }
     const authorInput = document.querySelector('#author');
@@ -82,8 +92,8 @@ function addRowEntry(book, index){
     });
     lastRowChild.append(readCheck);
     //for making read bool check disappear and reappear
-    newRow.addEventListener('mouseover', () => readCheck.style.opacity = 1);
-    newRow.addEventListener('mouseleave', () => readCheck.style.opacity = 0);
+    lastRowChild.addEventListener('mouseover', () => readCheck.style.opacity = 1);
+    lastRowChild.addEventListener('mouseleave', () => readCheck.style.opacity = 0);
     //...
 
     

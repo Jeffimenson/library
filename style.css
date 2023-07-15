@@ -48,6 +48,7 @@ main button#book-adder {
 table {
     border: 2px solid black;
     border-collapse: collapse;
+    display: none;
 }
 
 col.read-col{
