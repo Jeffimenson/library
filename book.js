@@ -63,10 +63,15 @@ function addRowEntry(book, index){
     removalButton.classList.add('remove');
     removalButton.textContent = '-';
     firstRowChild.prepend(removalButton);
+
+    //for making remove button disappear and reappear
+    newRow.addEventListener('mouseover', () => removalButton.style.display = 'grid');
+    newRow.addEventListener('mouseleave', () => removalButton.style.display = 'none')
+    //...
     
     tableBody.appendChild(newRow); 
 }
 
 function toggleFormContainer(){
-    formContainer.style.cssText = (formContainer.style.cssText != 'display: flex;') ? 'display: flex' : 'display:none';
+    formContainer.style.display = (formContainer.style.display != 'flex') ? 'flex' : 'none';
 }
