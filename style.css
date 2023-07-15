@@ -31,7 +31,7 @@ main h1 {
     margin-bottom: 1em;
 }
 
-main button {
+main button#book-adder {
     width: 1.5em;
     height: 1.5em;
     font-size: 1.4em;
@@ -54,6 +54,33 @@ thead {
     text-align: left;
     letter-spacing: 1px;
 }
+
+tbody tr {
+    position: relative;
+}
+
+tbody tr td:first-of-type .remove {
+    --size: 1em;
+    width: var(--size);
+    height: var(--size);
+    background-color:rgb(255, 213, 121);
+
+    position: absolute;
+    left: calc(var(--size)/-1.5);
+    
+    /*Aligns text content to the center*/
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    /*...*/
+}
+    tbody tr td:first-of-type .remove:hover{
+        background-color:rgb(228, 201, 142);
+    }
+
+    tbody tr td:first-of-type .remove:active{
+        background-color:rgb(185, 162, 111);
+    }
 
 td, th {
     border: 2px solid black;

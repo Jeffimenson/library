@@ -38,8 +38,9 @@ formSubmit.addEventListener('click', (event) => {
     books.push(newBook);
 
     tableBody.textContent = ''; //Clears table body
-    for (book of books){
-        addRowEntry(book);
+    for (let i = 0; i < books.length; i++){
+        const currBook = books[i];
+        addRowEntry(currBook, i);
     } 
     
     event.preventDefault(); 
@@ -47,13 +48,22 @@ formSubmit.addEventListener('click', (event) => {
     toggleFormContainer();
 })
 
-function addRowEntry(book){
+function addRowEntry(book, index){
     const newRow = document.createElement('tr');
+    newRow.setAttribute('data-index', index);
     for (thing of book.info()){
         const newData = document.createElement('td');
         newData.textContent = thing;
         newRow.appendChild(newData);
     }
+    
+    const firstRowChild = newRow.querySelector('td');
+    const removalButton = document.createElement('button');
+    removalButton.setAttribute('type', 'button');
+    removalButton.classList.add('remove');
+    removalButton.textContent = '-';
+    firstRowChild.prepend(removalButton);
+    
     tableBody.appendChild(newRow); 
 }
 
