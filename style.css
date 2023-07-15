@@ -1,0 +1,140 @@
+/*preliminaries*/
+:root {
+    --corner-radius: 15px; 
+}
+
+html {
+    font-family: Verdana, sans-serif;
+}
+
+button, input {
+    box-sizing: border-box;
+    border: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+/*...*/
+
+/*Main table container stuff*/
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 50%;
+    margin: 10vh auto;
+}
+
+main h1 {
+    margin-bottom: 1em;
+}
+
+main button {
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 1.4em;
+
+    align-self: flex-end;
+
+    /*Aligns text content to the center*/
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    /*...*/
+}
+
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+thead {
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+td, th {
+    border: 2px solid black;
+    padding: 0.6em 1em;
+}
+
+th {
+    padding-top: 1.4em;
+}
+/*...*/
+
+/* Form things */ 
+.form-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.158);
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    width: 20%;
+    gap: 1em;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: white;
+
+    position: relative;
+}
+
+form div:nth-of-type(1), form div:nth-of-type(2){
+    grid-column: 1 / -1;
+}
+
+form input[type='text']{
+    border: 1px solid black;
+    width: 100%;
+    padding: 3px 6px;
+    display: block;
+}
+
+form input[type='number']{
+    border: 1px solid black;
+    width: 5em;
+    padding: 3px 6px;
+}
+
+form button[type='submit']{
+    grid-column: 1 / -1;
+    padding: 0.5em;
+}
+
+form button#exit{
+    width: 1.3em;
+    height: 1.3em;
+
+    background-color: rgb(216, 71, 100);
+    color:white;
+
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    /*Aligns text content to the center*/
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    /*...*/
+}
+    form button#exit:hover{
+        background-color: rgb(189, 39, 69);
+    }
+
+    form button#exit:active{
+        background-color: rgb(165, 32, 59);
+    }
+
