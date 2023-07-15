@@ -50,6 +50,10 @@ table {
     border-collapse: collapse;
 }
 
+col.read-col{
+    width: 15%;
+}
+
 thead {
     text-align: left;
     letter-spacing: 1px;
@@ -74,13 +78,18 @@ tbody tr td:first-of-type .remove {
     align-content: center;
     /*...*/
 }
-    tbody tr td:first-of-type .remove:hover{
+    tbody tr td:first-of-type .remove:hover {
         background-color:rgb(228, 201, 142);
     }
 
-    tbody tr td:first-of-type .remove:active{
+    tbody tr td:first-of-type .remove:active {
         background-color:rgb(185, 162, 111);
     }
+
+tbody tr td:last-of-type .read-check {
+    margin-left: 5%;
+    opacity: 0;
+}
 
 td, th {
     border: 2px solid black;

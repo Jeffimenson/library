@@ -37,11 +37,7 @@ formSubmit.addEventListener('click', (event) => {
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
     books.push(newBook);
 
-    tableBody.textContent = ''; //Clears table body
-    for (let i = 0; i < books.length; i++){
-        const currBook = books[i];
-        addRowEntry(currBook, i);
-    } 
+    resetTableRows(); 
     
     event.preventDefault(); 
     form.reset(); 
@@ -53,7 +49,9 @@ function addRowEntry(book, index){
     newRow.setAttribute('data-index', index);
     for (thing of book.info()){
         const newData = document.createElement('td');
-        newData.textContent = thing;
+        const dataText = document.createElement('span');
+        newData.append(dataText);
+        dataText.textContent = thing;
         newRow.appendChild(newData);
     }
     
@@ -62,16 +60,44 @@ function addRowEntry(book, index){
     removalButton.setAttribute('type', 'button');
     removalButton.classList.add('remove');
     removalButton.textContent = '-';
+    removalButton.addEventListener('click', ()=>{
+        const thisRowInd = newRow.dataset.index;
+        books.splice(thisRowInd, 1);
+        resetTableRows(); 
+    });
     firstRowChild.prepend(removalButton);
-
     //for making remove button disappear and reappear
     newRow.addEventListener('mouseover', () => removalButton.style.display = 'grid');
-    newRow.addEventListener('mouseleave', () => removalButton.style.display = 'none')
+    newRow.addEventListener('mouseleave', () => removalButton.style.display = 'none');
     //...
+
+    const lastRowChild = newRow.querySelector('td:last-of-type');
+    const readCheck = document.createElement('input');
+    readCheck.setAttribute('type', 'checkbox');
+    readCheck.classList.add('read-check');
+    readCheck.checked = book.read; 
+    readCheck.addEventListener('click', ()=>{
+        book.read = readCheck.checked;
+        lastRowChild.querySelector('span').textContent = book.read;
+    });
+    lastRowChild.append(readCheck);
+    //for making read bool check disappear and reappear
+    newRow.addEventListener('mouseover', () => readCheck.style.opacity = 1);
+    newRow.addEventListener('mouseleave', () => readCheck.style.opacity = 0);
+    //...
+
     
     tableBody.appendChild(newRow); 
 }
 
 function toggleFormContainer(){
     formContainer.style.display = (formContainer.style.display != 'flex') ? 'flex' : 'none';
+}
+
+function resetTableRows(){
+    tableBody.textContent = ''; //Clears table body
+    for (let i = 0; i < books.length; i++){
+        const currBook = books[i];
+        addRowEntry(currBook, i);
+    } 
 }
