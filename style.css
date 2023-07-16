@@ -29,12 +29,20 @@ main {
 
 main h1 {
     margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+main h1 svg {
+    width: 1.5em;
 }
 
 main button#book-adder {
     width: 1.5em;
     height: 1.5em;
     font-size: 1.4em;
+    border-radius: 50%;
 
     align-self: flex-end;
 
@@ -46,13 +54,19 @@ main button#book-adder {
 }
 
 table {
-    border: 2px solid black;
-    border-collapse: collapse;
-    display: none;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 2px solid hsl(0, 2%, 88%); 
+    border-radius: var(--corner-radius);
+    display: none; 
 }
 
-col.read-col{
+col.read-col {
     width: 15%;
+}
+
+col.pages-col {
+    width: 20%;
 }
 
 thead {
@@ -60,8 +74,54 @@ thead {
     letter-spacing: 1px;
 }
 
+thead tr th{
+    background-color: hsl(0, 2%, 88%);
+}
+
+table thead th:first-child {
+   border-top-left-radius: var(--corner-radius); 
+}
+
+table thead th:last-child {
+    border-top-right-radius: var(--corner-radius);
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: var(--corner-radius);
+}
+    
+table tr:last-child td:last-child {
+    border-bottom-right-radius: var(--corner-radius);
+}
+
 tbody tr {
     position: relative;
+}
+    tbody tr:nth-child(even) td{
+        background-color: hsl(0, 0%, 99%);
+    }
+
+    tbody tr:nth-child(odd) td{ /*Background color not applied to row because that causes bleed through the border radiai*/
+        background-color: hsl(0, 0%, 96%);
+    }
+
+tr td:not(:first-child) {
+    border-left: 2px solid hsl(0, 2%, 88%);
+}
+
+tbody tr:hover td {
+    background-color: hsl(199, 53%, 94%);
+}
+    tbody tr:hover td:not(:first-child){
+        border-left: 2px solid hsl(201, 59%, 89%);
+    }
+
+td, th {
+    padding: 0.6em 1em;
+}
+
+th {
+    padding-top: 1.4em;
 }
 
 tbody tr td:first-of-type .remove {
@@ -91,15 +151,6 @@ tbody tr td:last-of-type .read-check {
     margin-left: 5%;
     opacity: 0;
 }
-
-td, th {
-    border: 2px solid black;
-    padding: 0.6em 1em;
-}
-
-th {
-    padding-top: 1.4em;
-}
 /*...*/
 
 /* Form things */ 
@@ -121,9 +172,9 @@ form {
     grid-template-columns: 1fr 1fr; 
     width: 20%;
     gap: 1em;
-    border: 2px solid black;
     padding: 20px;
     background-color: white;
+    border-radius: var(--corner-radius);
 
     position: relative;
 }
@@ -136,31 +187,34 @@ form input[type='text']{
     border: 1px solid black;
     width: 100%;
     padding: 3px 6px;
+    border-radius: 6px;
     display: block;
 }
 
 form input[type='number']{
     border: 1px solid black;
     width: 5em;
+    border-radius: 6px;
     padding: 3px 6px;
 }
 
 form button[type='submit']{
     grid-column: 1 / -1;
     padding: 0.5em;
+    border-radius: 6px;
 }
 
 form button#exit{
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.5em;
+    height: 1.5em;
 
     background-color: rgb(216, 71, 100);
+    border-radius: 50%;
     color:white;
 
     position: absolute;
-    top: 2px;
-    right: 2px;
-
+    top: -10px;
+    right: -10px; 
     /*Aligns text content to the center*/
     display: grid;
     justify-content: center;
