@@ -1,6 +1,7 @@
 const bookAdder = document.querySelector('#book-adder');
 const table = document.querySelector('table');
 const tableBody = document.querySelector('tbody');
+const bookTracker = document.querySelector('.book-tracker')
 
 const formContainer = document.querySelector('.form-container');
 const form = document.querySelector('form');
@@ -48,6 +49,7 @@ formSubmit.addEventListener('click', (event) => {
     books.push(newBook);
 
     resetTableRows(); 
+    updateBookTracker();
     
     event.preventDefault(); 
     form.reset(); 
@@ -74,6 +76,7 @@ function addRowEntry(book, index){
         const thisRowInd = newRow.dataset.index;
         books.splice(thisRowInd, 1);
         resetTableRows(); 
+        updateBookTracker();
     });
     firstRowChild.prepend(removalButton);
     //for making remove button disappear and reappear
@@ -110,4 +113,8 @@ function resetTableRows(){
         const currBook = books[i];
         addRowEntry(currBook, i);
     } 
+}
+
+function updateBookTracker(){
+    bookTracker.textContent = books.length; 
 }
