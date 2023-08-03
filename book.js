@@ -8,15 +8,33 @@ const form = document.querySelector('form');
 const formExit = document.querySelector('form button#exit');
 const formSubmit = document.querySelector('form button[type="submit"]');
 
-function Book(title, author, pages, read) {
-    this.title = title; 
-    this.author = author;
-    this.pages = pages; 
-    this.read = read; 
-}
+// function Book(title, author, pages, read) {
+//     this.title = title; 
+//     this.author = author;
+//     this.pages = pages; 
+//     this.read = read; 
+// }
 
-Book.prototype.info = function(){
-    return [this.title, this.author, this.pages, this.read]; 
+// Book.prototype.info = function(){
+//     return [this.title, this.author, this.pages, this.read]; 
+// }
+
+class Book {
+    title; 
+    author; 
+    pages;
+    read;
+    
+    constructor (title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info(){
+        return [this.title, this.author, this.pages, this.read]; 
+    }
 }
 
 const books = [];
@@ -94,7 +112,7 @@ function addRowEntry(book, index){
         lastRowChild.querySelector('span').textContent = book.read;
     });
     lastRowChild.append(readCheck);
-    //for making read bool check disappear and reappear
+    //for making read check disappear and reappear
     lastRowChild.addEventListener('mouseover', () => readCheck.style.opacity = 1);
     lastRowChild.addEventListener('mouseleave', () => readCheck.style.opacity = 0);
     //...
